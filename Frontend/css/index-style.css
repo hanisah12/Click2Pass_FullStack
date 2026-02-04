@@ -1,0 +1,152 @@
+
+.hero-section {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white;
+    padding: 6rem 2rem;
+    text-align: center;
+    margin-top: 70px; 
+    animation: fadeIn 0.8s ease-out;
+}
+.hero-content h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+.hero-content p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    opacity: 0.9;
+}
+.hero-cta {
+    background: var(--card-bg);
+    color: var(--primary);
+    border: none;
+    padding: 0.9rem 2rem;
+    border-radius: 2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    font-size: 1.1rem;
+    display: inline-block;
+    text-decoration: none;
+}
+.hero-cta:hover {
+    background: #f1f5f9;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+.features-section,
+.how-it-works-section,
+.cta-section {
+    max-width: 1200px;
+    margin: 5rem auto;
+    padding: 0 2rem;
+    text-align: center;
+}
+.features-section h2,
+.how-it-works-section h2,
+.cta-section h2 {
+    font-size: 2.2rem;
+    color: var(--text);
+    margin-bottom: 3rem;
+    position: relative;
+    display: inline-block;
+}
+.features-section h2::after,
+.how-it-works-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px; left: 50%;
+    width: 80px; height: 4px;
+    background: linear-gradient(90deg, var(--accent), var(--primary));
+    border-radius: 2px;
+    transform: translateX(-50%);
+}
+
+.features-grid,
+.how-it-works-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    text-align: left;
+}
+
+.feature-card,
+.how-it-works-step {
+    background: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+    transition: var(--transition);
+}
+.feature-card:hover,
+.how-it-works-step:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-md);
+}
+.feature-card i,
+.how-it-works-step i {
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+}
+.feature-card h3,
+.how-it-works-step h3 {
+    font-size: 1.3rem;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+}
+.feature-card p,
+.how-it-works-step p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+
+.cta-section {
+    background: var(--bg);
+    padding: 4rem 2rem;
+    border-radius: var(--radius);
+}
+.cta-section h2 {
+    margin-bottom: 1rem;
+}
+.cta-section p {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    margin-bottom: 2rem;
+}
+.cta-section .hero-cta { 
+     background: var(--primary);
+     color: white;
+     box-shadow: 0 4px 20px rgba(79, 70, 229, 0.4);
+}
+.cta-section .hero-cta:hover {
+    background: #4338ca; 
+    box-shadow: 0 8px 25px rgba(79, 70, 229, 0.5);
+}
+
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+    .hero-content p {
+        font-size: 1rem;
+    }
+    .features-section h2,
+    .how-it-works-section h2 {
+        font-size: 1.8rem;
+    }
+    .features-section,
+    .how-it-works-section,
+    .cta-section {
+        margin: 3rem auto;
+    }
+}

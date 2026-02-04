@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment Successful – Click2Pass</title>
+
+  <link rel="stylesheet" href="../css/style1.css" />
+  <link rel="stylesheet" href="../css/success-style.css" />
+  <link rel="stylesheet" href="../css/form-style.css" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    .ticket-details {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 0;
+      margin: 1.5rem 0;
+      text-align: left;
+      overflow: hidden;
+      border: 1px solid #e2e8f0;
+    }
+
+    .ticket-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .ticket-row:last-child {
+      border-bottom: none;
+    }
+
+    .label {
+      font-weight: 500;
+      color: #64748b;
+      font-size: 0.95rem;
+    }
+
+    .value {
+      font-weight: 700;
+      color: #1e293b;
+      font-size: 1rem;
+    }
+
+    .pass-id-value {
+      color: #8b5cf6;
+    }
+
+    .download-section {
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    .download-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #64748b;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .download-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .btn-download {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 0.9rem;
+      border-radius: 10px;
+      border: 1px solid #e2e8f0;
+      background: white;
+      color: #4f46e5;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      font-size: 0.95rem;
+    }
+
+    .btn-download:hover {
+      background: #f8fafc;
+      border-color: #cbd5e1;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .btn-download i {
+      font-size: 1.1rem;
+    }
+
+    .help-section {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .help-card {
+      background: #ffffff;
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .help-card h4 {
+      font-size: 1.1rem;
+      color: #1e293b;
+      margin-bottom: 0.5rem;
+    }
+
+    .help-card p {
+      color: #64748b;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .help-link {
+      color: #4f46e5;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .help-link:hover {
+      text-decoration: underline;
+    }
+
+    .confirmation-box {
+      background: #fff1f2;
+      border: 1px solid #fecaca;
+      color: #e11d48;
+      padding: 1.25rem;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      font-weight: 500;
+      line-height: 1.4;
+      font-size: 0.9rem;
+    }
+
+    .confirmation-box i {
+      font-size: 1.2rem;
+    }
+  </style>
+  <link rel="stylesheet" href="../css/style1.css"/>
+</head>
+
+<body>
+
+
+  <nav class="top-navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <h2>Click<span>2Pass</span></h2>
+      </div>
+
+      <ul class="nav-menu">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="form.html">Apply Pass</a></li>
+        <li><a href="my-passes.html">My Passes</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="form-container">
+    <div class="success-card">
+      <div class="success-icon" style="color: #10b981;">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      <h2 class="form-title">Pass Applied Successfully</h2>
+      <p class="form-subtitle">Your transaction was successful!</p>
+
+
+      <div class="ticket-details">
+        <div class="ticket-row">
+          <span class="label">Pass Type:</span>
+          <span class="value" id="passType">—</span>
+        </div>
+        <div class="ticket-row">
+          <span class="label">Pass ID:</span>
+          <span class="value pass-id-value" id="passId">—</span>
+        </div>
+        <div class="ticket-row">
+          <span class="label">Valid From:</span>
+          <span class="value" id="validFrom">—</span>
+        </div>
+        <div class="ticket-row">
+          <span class="label">Valid Till:</span>
+          <span class="value" id="validTill">—</span>
+        </div>
+        <div class="ticket-row">
+          <span class="label">Days Remaining:</span>
+          <span class="value" id="daysRemaining">—</span>
+        </div>
+      </div>
+
+ 
+      <div class="help-section">
+        <div class="help-card">
+          <h4>Need Help?</h4>
+          <p>If you have any questions or need assistance, please contact our support team.</p>
+          <a href="contact.html" class="help-link">
+            Contact Support <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <a href="my-passes.html" class="btn-primary" style="margin-top: 2rem;">
+        View My Passes
+      </a>
+    </div>
+  </div>
+
+  <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>Click<span>2Pass</span></h3>
+                <p>Your trusted platform for instant bus passes.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p><i class="fas fa-envelope"></i> support@click2pass.com</p>
+                <p><i class="fas fa-phone"></i> +91 1800-123-4567</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2025 Click2Pass. All rights reserved.</p>
+        </div>
+    </footer>
+
+  <script src="../js/success.js"></script>
+
+</body>
+
+</html>

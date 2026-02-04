@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edit Profile – Click2Pass</title>
+
+  <link rel="stylesheet" href="../css/style1.css" />
+  <link rel="stylesheet" href="../css/edit-profile.css" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body>
+
+  <nav class="top-navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <h2>Click<span>2Pass</span></h2>
+      </div>
+      <ul class="nav-menu">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="my-passes.html">My Passes</a></li>
+        <li><a href="profile.html" class="active">Profile</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <div class="main-layout">
+
+    <aside class="sidebar">
+      <div class="user-profile">
+        <div class="avatar">
+          <i class="fas fa-user-circle"></i>
+        </div>
+        <div class="user-info">
+          <h3>Welcome,</h3>
+          <span id="userName">User</span>
+        </div>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li>
+          <a href="profile.html">
+            <i class="fas fa-user"></i>
+            Profile
+          </a>
+        </li>
+        <li>
+          <a href="my-passes.html">
+            <i class="fas fa-ticket-alt"></i>
+            My Passes
+          </a>
+        </li>
+        <li>
+          <a href="edit_profile.html" class="active">
+            <i class="fas fa-lock"></i>
+            Edit Profile
+          </a>
+        </li>
+        <li>
+          <a href="login.html">
+            <i class="fas fa-sign-out-alt"></i>
+            Logout
+          </a>
+        </li>
+      </ul>
+    </aside>
+
+
+
+    <main class="content">
+      <div class="page-header">
+        <h2 class="page-title">Edit Profile</h2>
+        <p class="page-subtitle">
+          Update your personal details securely
+        </p>
+      </div>
+
+      <form id="editProfileForm" class="profile-card">
+
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" required />
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Mobile Number</label>
+          <input type="tel" id="phone" pattern="[0-9]{10}" required />
+        </div>
+
+        <hr class="edit-divider" />
+
+        <div class="form-group">
+          <label for="password">New Password (leave blank to keep current)</label>
+          <input type="password" id="password" />
+        </div>
+
+        <button type="submit" class="btn-primary">Save Changes</button>
+      </form>
+  </div>
+  </main>
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>Click<span>2Pass</span></h3>
+        <p>Your trusted platform for instant bus passes.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p><i class="fas fa-envelope"></i> support@click2pass.com</p>
+        <p><i class="fas fa-phone"></i> +91 1800-123-4567</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 Click2Pass. All rights reserved.</p>
+    </div>
+  </footer>
+  <!-- JS -->
+  <script src="../js/config.js"></script>
+  <script src="../js/edit_profile.js"></script>
+</body>
+
+</html>
