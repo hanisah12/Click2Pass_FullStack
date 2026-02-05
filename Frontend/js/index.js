@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
     applyPassBtn.addEventListener("click", () => {
       if (userId) {
 
-        window.location.href = "../pages/form.html";
+        window.location.href = "../Frontend/pages/form.html";
       } else {
 
         window.location.href = "../pages/login.html";
