@@ -11,41 +11,41 @@ document.addEventListener("DOMContentLoaded", () => {
     if (loginBtn) {
       loginBtn.textContent = "My Profile";
       loginBtn.addEventListener("click", () => {
-        window.location.href = "pages/profile.html";
+        window.location.href = "../pages/profile.html";
       });
     }
     if (signupBtn) {
       signupBtn.textContent = "My Passes";
       signupBtn.classList.remove("btn-signup");
       signupBtn.addEventListener("click", () => {
-        window.location.href = "pages/my-passes.html";
+        window.location.href = "../pages/my-passes.html";
       });
     }
     if (createAccountBtn) {
       createAccountBtn.textContent = "Apply for Pass";
       createAccountBtn.addEventListener("click", () => {
-        window.location.href = "pages/form.html";
+        window.location.href = "../pages/form.html";
       });
     }
   } else {
    
     if (signupBtn) {
       signupBtn.addEventListener("click", () => {
-        window.location.href = "pages/signup.html";
+        window.location.href = "../pages/signup.html";
       });
     }
 
   
     if (loginBtn) {
       loginBtn.addEventListener("click", () => {
-        window.location.href = "pages/login.html";
+        window.location.href = "../pages/login.html";
       });
     }
 
 
     if (createAccountBtn) {
       createAccountBtn.addEventListener("click", () => {
-        window.location.href = "pages/signup.html";
+        window.location.href = "../pages/signup.html";
       });
     }
   }
@@ -55,10 +55,10 @@ document.addEventListener("DOMContentLoaded", () => {
     applyPassBtn.addEventListener("click", () => {
       if (userId) {
 
-        window.location.href = "pages/form.html";
+        window.location.href = "../pages/form.html";
       } else {
 
-        window.location.href = "pages/login.html";
+        window.location.href = "../pages/login.html";
       }
     });
   }

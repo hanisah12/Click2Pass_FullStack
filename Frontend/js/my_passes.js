@@ -1,6 +1,6 @@
 const user_id = localStorage.getItem("user_id");
 if (!user_id) {
-  window.location.href = "login.html";
+  window.location.href = "../pages/login.html";
 }
 
 const token = localStorage.getItem("token");

@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const user = JSON.parse(localStorage.getItem("user"));
 
     if (!passId || !userId) {
-        window.location.href = "my-passes.html";
+        window.location.href = "../pages/my-passes.html";
         return;
     }
 
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         if (pass.user_id != userId) {
             alert("Unauthorized access to this pass.");
-            window.location.href = "my-passes.html";
+            window.location.href = "../pages/my-passes.html";
             return;
         }
 
@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     } catch (err) {
         console.error("Error fetching pass:", err);
         alert("Failed to load pass details. Please try again.");
-        window.location.href = "my-passes.html";
+        window.location.href = "../pages/my-passes.html";
     }
 });
 

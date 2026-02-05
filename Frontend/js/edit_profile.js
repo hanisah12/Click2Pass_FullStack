@@ -1,6 +1,6 @@
 const user = JSON.parse(localStorage.getItem("user"));
 if (!user) {
-  window.location.href = "login.html";
+  window.location.href = "../pages/login.html";
 }
 
 
@@ -49,5 +49,5 @@ document.getElementById("editProfileForm").addEventListener("submit", async e =>
   localStorage.setItem("user", JSON.stringify(updatedUser));
 
   alert("Profile updated successfully!");
-  window.location.href = "profile.html";
+  window.location.href = "../pages/profile.html";
 });

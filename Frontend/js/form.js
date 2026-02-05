@@ -36,7 +36,7 @@ document.getElementById("apply-pass-form").addEventListener("submit", async (e) 
 
   localStorage.setItem("last_pass", JSON.stringify(result));
 
-  window.location.href = "success.html";
+  window.location.href = "../pages/success.html";
 });
 
 

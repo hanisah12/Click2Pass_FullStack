@@ -27,7 +27,7 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
 
     alert("Signup successful. Please login.");
 
-    window.location.replace("login.html");
+    window.location.replace("../pages/login.html");
 
   } catch (err) {
     alert("Server not reachable");
