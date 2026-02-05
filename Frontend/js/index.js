@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
    
     if (signupBtn) {
       signupBtn.addEventListener("click", () => {
-        window.location.href = "../pages/signup.html";
+        window.location.href = "./pages/signup.html";
       });
     }
 
