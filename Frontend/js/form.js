@@ -36,7 +36,7 @@ document.getElementById("apply-pass-form").addEventListener("submit", async (e) 
 
   localStorage.setItem("last_pass", JSON.stringify(result));
 
-  window.location.href = "../pages/success.html";
+  window.location.href = "success.html";
 });
 
 
@@ -60,6 +60,6 @@ validFrom.addEventListener("change", () => {
     const dd = String(tillDate.getDate()).padStart(2, '0');
 
     validTill.value = `${yyyy}-${mm}-${dd}`;
-    validTill.min = validFrom.value; 
+    validTill.min = validFrom.value;
   }
 });

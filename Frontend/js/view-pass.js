@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const user = JSON.parse(localStorage.getItem("user"));
 
     if (!passId || !userId) {
-        window.location.href = "../pages/my-passes.html";
+        window.location.href = "my-passes.html";
         return;
     }
 
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         if (pass.user_id != userId) {
             alert("Unauthorized access to this pass.");
-            window.location.href = "../pages/my-passes.html";
+            window.location.href = "my-passes.html";
             return;
         }
 
@@ -44,19 +44,19 @@ document.addEventListener("DOMContentLoaded", async () => {
         const daysElement = document.getElementById("daysRemaining");
         if (diffDays > 0) {
             daysElement.textContent = `${diffDays} Days`;
-            daysElement.style.color = "#10b981"; 
+            daysElement.style.color = "#10b981";
         } else if (diffDays === 0) {
             daysElement.textContent = "Expires Today";
             daysElement.style.color = "#f59e0b";
         } else {
             daysElement.textContent = "Expired";
-            daysElement.style.color = "#ef4444"; 
+            daysElement.style.color = "#ef4444";
         }
 
     } catch (err) {
         console.error("Error fetching pass:", err);
         alert("Failed to load pass details. Please try again.");
-        window.location.href = "../pages/my-passes.html";
+        window.location.href = "my-passes.html";
     }
 });
 

@@ -23,11 +23,11 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
       return;
     }
 
-    localStorage.clear(); 
+    localStorage.clear();
 
     alert("Signup successful. Please login.");
 
-    window.location.replace("../pages/login.html");
+    window.location.replace("login.html");
 
   } catch (err) {
     alert("Server not reachable");

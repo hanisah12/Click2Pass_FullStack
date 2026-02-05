@@ -1,6 +1,6 @@
 const user_id = localStorage.getItem("user_id");
 if (!user_id) {
-  window.location.href = "../pages/login.html";
+  window.location.href = "login.html";
 }
 
 const token = localStorage.getItem("token");
@@ -35,10 +35,10 @@ fetch(`${API_BASE}/passes/user/${user_id}`, {
 
       if (diffDays > 0) {
         statusText = `${diffDays} Days Remaining`;
-        statusStyle = "color: #10b981; font-weight: 700;"; 
+        statusStyle = "color: #10b981; font-weight: 700;";
       } else if (diffDays === 0) {
         statusText = "Expires Today";
-        statusStyle = "color: #f59e0b; font-weight: 700;"; 
+        statusStyle = "color: #f59e0b; font-weight: 700;";
       } else {
         statusText = "Expired";
         statusStyle = "background: linear-gradient(135deg, #f44336, #e91e63); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800;";
