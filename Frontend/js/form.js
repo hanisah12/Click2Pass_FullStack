@@ -43,9 +43,46 @@ document.getElementById("apply-pass-form").addEventListener("submit", async (e) 
 const today = new Date().toISOString().split("T")[0];
 const validFrom = document.getElementById("valid-from");
 const validTill = document.getElementById("valid-till");
+const idProofInput = document.getElementById("id-proof");
 
 validFrom.min = today;
 validTill.min = today;
+
+// Fetch existing pass to pre-fill Aadhaar number if it exists
+document.addEventListener("DOMContentLoaded", async () => {
+  const user_id = localStorage.getItem("user_id");
+  const token = localStorage.getItem("token");
+
+  if (user_id && token) {
+    try {
+      const res = await fetch(`${API_BASE}/passes/user/${user_id}`, {
+        headers: {
+          "Authorization": `Bearer ${token}`
+        }
+      });
+      if (res.ok) {
+        const passes = await res.json();
+        if (passes.length > 0) {
+          // Use the Aadhaar from the most recent pass
+          const latestPass = passes[passes.length - 1];
+          idProofInput.value = latestPass.id_proof;
+          idProofInput.readOnly = true;
+          idProofInput.classList.add("readonly-input");
+
+          // Add a help message
+          const helpText = document.createElement("small");
+          helpText.innerText = "Aadhaar number is locked to your previous record.";
+          helpText.style.color = "#666";
+          helpText.style.display = "block";
+          helpText.style.marginTop = "5px";
+          idProofInput.parentNode.appendChild(helpText);
+        }
+      }
+    } catch (err) {
+      console.error("Error fetching previous passes:", err);
+    }
+  }
+});
 
 validFrom.addEventListener("change", () => {
   const fromDate = new Date(validFrom.value);

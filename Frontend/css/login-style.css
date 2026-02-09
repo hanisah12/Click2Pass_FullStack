@@ -26,7 +26,6 @@ body {
     animation: slideUp 0.6s ease-out;
 }
 
-/* Rainbow top bar */
 .login-card::before {
     content: "";
     position: absolute;

@@ -26,14 +26,38 @@ def create_pass(pass_data: PassCreate, db: Session = Depends(connect_to_db), cur
             status_code=400,
             detail="valid_till cannot be earlier than valid_from"
         )
+    
+    # Unique Aadhaar check: If this Aadhaar is already used by someone else
+    existing_pass_with_aadhar = db.query(ApplyPass).filter(
+        ApplyPass.id_proof == pass_data.id_proof,
+        ApplyPass.user_id != current_user.user_id
+    ).first()
+
+    if existing_pass_with_aadhar:
+        raise HTTPException(
+            status_code=400,
+            detail="This Aadhaar number is already registered with another user."
+        )
+
+    # Aadhaar consistency check: If user already has a pass, Aadhaar must match
+    previous_pass = db.query(ApplyPass).filter(
+        ApplyPass.user_id == current_user.user_id
+    ).first()
+
+    if previous_pass and previous_pass.id_proof != pass_data.id_proof:
+        raise HTTPException(
+            status_code=400,
+            detail="Aadhaar number does not match your previous record. Please enter your correct Aadhaar number."
+        )
+
     last_pass = db.query(ApplyPass).filter(
-        ApplyPass.user_id == pass_data.user_id
+        ApplyPass.user_id == current_user.user_id
     ).order_by(ApplyPass.valid_till.desc()).first()
 
     if last_pass and pass_data.valid_from <= last_pass.valid_till:
         raise HTTPException(
             status_code=400,
-            detail="You already have a pass. New pass must start after previous pass ends"
+            detail="You already have a active pass. New pass must start after previous pass ends"
         )
 
     new_pass = ApplyPass(**pass_data.model_dump())

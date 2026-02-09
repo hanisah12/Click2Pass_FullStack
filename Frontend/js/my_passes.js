@@ -23,11 +23,19 @@ fetch(`${API_BASE}/passes/user/${user_id}`, {
     myPasses.forEach(p => {
       const today = new Date();
       today.setHours(0, 0, 0, 0);
+      const fromDate = new Date(p.valid_from);
+      fromDate.setHours(0, 0, 0, 0);
       const tillDate = new Date(p.valid_till);
       tillDate.setHours(0, 0, 0, 0);
 
-      const diffTime = tillDate - today;
-      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      let diffDays;
+      if (today < fromDate) {
+        const diffTime = tillDate - fromDate;
+        diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      } else {
+        const diffTime = tillDate - today;
+        diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      }
 
       let statusText = "";
       let statusStyle = "";

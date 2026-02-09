@@ -236,6 +236,18 @@ input[type="date"]:focus {
   transform: translateY(-3px);
 }
 
+input.readonly-input {
+  background: #f8fafc;
+  cursor: not-allowed;
+  border-color: #cbd5e1;
+}
+
+input.readonly-input:focus {
+  transform: none;
+  box-shadow: none;
+  border-color: #cbd5e1;
+}
+
 input[type="date"]::-webkit-calendar-picker-indicator {
   cursor: pointer;
   filter: opacity(0.6);

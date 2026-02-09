@@ -35,11 +35,21 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         const today = new Date();
         today.setHours(0, 0, 0, 0);
+        const fromDate = new Date(pass.valid_from);
+        fromDate.setHours(0, 0, 0, 0);
         const tillDate = new Date(pass.valid_till);
         tillDate.setHours(0, 0, 0, 0);
 
-        const diffTime = tillDate - today;
-        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        let diffDays;
+        if (today < fromDate) {
+            // Pass hasn't started yet, show total duration
+            const diffTime = tillDate - fromDate;
+            diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        } else {
+            // Pass is active or expired
+            const diffTime = tillDate - today;
+            diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        }
 
         const daysElement = document.getElementById("daysRemaining");
         if (diffDays > 0) {

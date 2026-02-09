@@ -12,22 +12,30 @@ if (!passData) {
 
   const today = new Date();
   today.setHours(0, 0, 0, 0);
+  const fromDate = new Date(passData.valid_from);
+  fromDate.setHours(0, 0, 0, 0);
   const tillDate = new Date(passData.valid_till);
   tillDate.setHours(0, 0, 0, 0);
 
-  const diffTime = tillDate - today;
-  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  let diffDays;
+  if (today < fromDate) {
+    const diffTime = tillDate - fromDate;
+    diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  } else {
+    const diffTime = tillDate - today;
+    diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  }
 
   const daysElement = document.getElementById("daysRemaining");
   if (diffDays > 0) {
     daysElement.textContent = `${diffDays} Days`;
-    daysElement.style.color = "#10b981"; 
+    daysElement.style.color = "#10b981";
   } else if (diffDays === 0) {
     daysElement.textContent = "Expires Today";
-    daysElement.style.color = "#f59e0b"; 
+    daysElement.style.color = "#f59e0b";
   } else {
     daysElement.textContent = "Expired";
-    daysElement.style.color = "#ef4444"; 
+    daysElement.style.color = "#ef4444";
   }
 }
 
