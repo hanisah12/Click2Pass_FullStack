@@ -30,3 +30,4 @@ document.querySelector("form").addEventListener("submit", async (e) => {
     alert("Server not reachable");
   }
 });
+

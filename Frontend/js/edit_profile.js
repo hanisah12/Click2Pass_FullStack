@@ -2,15 +2,13 @@ const user = JSON.parse(localStorage.getItem("user"));
 if (!user) {
   window.location.href = "login.html";
 }
-
-
 document.getElementById("name").value = user.name;
 document.getElementById("phone").value = user.phone;
 
 
 const userNameEl = document.getElementById("userName");
 if (userNameEl) {
-  userNameEl.textContent = user.name;
+  userNameEl.textContent = user.name; 
 }
 
 document.getElementById("editProfileForm").addEventListener("submit", async e => {
@@ -36,7 +34,7 @@ document.getElementById("editProfileForm").addEventListener("submit", async e =>
       "Content-Type": "application/json",
       "Authorization": `Bearer ${token}`
     },
-    body: JSON.stringify(data)
+    body: JSON.stringify(da)
   });
 
   if (!res.ok) {
@@ -51,3 +49,5 @@ document.getElementById("editProfileForm").addEventListener("submit", async e =>
   alert("Profile updated successfully!");
   window.location.href = "profile.html";
 });
+
+

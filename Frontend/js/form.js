@@ -93,10 +93,15 @@ validFrom.addEventListener("change", () => {
 
 
     const yyyy = tillDate.getFullYear();
-    const mm = String(tillDate.getMonth() + 1).padStart(2, '0');
+    const mm = String(tillDate.getMonth()  + 1).padStart(2, '0');
     const dd = String(tillDate.getDate()).padStart(2, '0');
 
     validTill.value = `${yyyy}-${mm}-${dd}`;
     validTill.min = validFrom.value;
   }
 });
+
+  
+
+
+
