@@ -35,3 +35,17 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
     alert("Server not reachable");
   }
 });
+
+// Password Visibility Toggle
+const togglePassword = document.querySelector("#togglePassword");
+const passwordInput = document.querySelector("#password");
+
+togglePassword.addEventListener("click", function () {
+  // Toggle the type attribute
+  const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
+  passwordInput.setAttribute("type", type);
+
+  // Toggle the icon
+  this.classList.toggle("fa-eye");
+  this.classList.toggle("fa-eye-slash");
+});

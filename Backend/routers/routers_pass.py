@@ -21,6 +21,20 @@ router = APIRouter(prefix="/passes", tags=["Passes"])
 @router.post("/create", response_model=PassResponse)
 def create_pass(pass_data: PassCreate, db: Session = Depends(connect_to_db), current_user: Users = Depends(get_current_user)):
 
+    # Auto-calculate valid_till to be exactly 1 month after valid_from
+    # Using a simple month increment logic
+    from datetime import date
+    import calendar
+    
+    start_date = pass_data.valid_from
+    month = start_date.month % 12 + 1
+    year = start_date.year + (start_date.month // 12)
+    day = min(start_date.day, calendar.monthrange(year, month)[1])
+    expected_till = date(year, month, day)
+    
+    # Overwrite valid_till to ensure it's exactly 1 month
+    pass_data.valid_till = expected_till
+
     if pass_data.valid_till < pass_data.valid_from:
         raise HTTPException(
             status_code=400,

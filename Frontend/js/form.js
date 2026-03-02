@@ -87,21 +87,31 @@ document.addEventListener("DOMContentLoaded", async () => {
 validFrom.addEventListener("change", () => {
   const fromDate = new Date(validFrom.value);
   if (!isNaN(fromDate.getTime())) {
-
     const tillDate = new Date(fromDate);
     tillDate.setMonth(tillDate.getMonth() + 1);
 
-
     const yyyy = tillDate.getFullYear();
-    const mm = String(tillDate.getMonth()  + 1).padStart(2, '0');
+    const mm = String(tillDate.getMonth() + 1).padStart(2, '0');
     const dd = String(tillDate.getDate()).padStart(2, '0');
 
     validTill.value = `${yyyy}-${mm}-${dd}`;
     validTill.min = validFrom.value;
+
+    // Optional: Visual feedback
+    validTill.style.backgroundColor = "#f0f0f0";
+    validTill.style.cursor = "not-allowed";
   }
 });
 
-  
+// Add a help message for Valid Till
+const tillHelpText = document.createElement("small");
+tillHelpText.innerText = "Validity is fixed for 1 month from the start date.";
+tillHelpText.style.color = "#666";
+tillHelpText.style.display = "block";
+tillHelpText.style.marginTop = "5px";
+validTill.parentNode.appendChild(tillHelpText);
+
+
 
 
 
