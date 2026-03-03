@@ -25,10 +25,18 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
       body: JSON.stringify(data)
     });
 
-    const result = await res.json();
+    let result;
+    const text = await res.text();
+    try {
+      result = JSON.parse(text);
+    } catch (e) {
+      console.error("Server returned non-JSON:", text);
+      alert("Server Error (Non-JSON): " + text.substring(0, 100));
+      return;
+    }
 
     if (!res.ok) {
-      alert(JSON.stringify(result.detail));
+      alert(result.detail || "Signup failed");
       return;
     }
 

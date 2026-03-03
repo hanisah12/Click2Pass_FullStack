@@ -12,9 +12,9 @@ if db_url and db_url.startswith("postgres://"):
     db_url = db_url.replace("postgres://", "postgresql://", 1)
 
 if not db_url:
-    # Use a dummy sqlite DB for build-time or if env var is missing to prevent total crash
-    print("WARNING: DATABASE_URL not found. Falling back to local sqlite.")
-    db_url = "sqlite:///./test.db"
+    # Vercel fix: Must use /tmp for any file writing
+    print("WARNING: DATABASE_URL not found. Falling back to /tmp/test.db.")
+    db_url = "sqlite:////tmp/test.db"
 
 engine_args = {}
 if db_url and "postgresql" in db_url:

@@ -16,7 +16,15 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
       body: JSON.stringify(data)
     });
 
-    const user = await res.json();
+    let user;
+    const text = await res.text();
+    try {
+      user = JSON.parse(text);
+    } catch (e) {
+      console.error("Server returned non-JSON:", text);
+      alert("Server Error (Non-JSON): " + text.substring(0, 100));
+      return;
+    }
 
     if (!res.ok) {
       alert(user.detail || "Login failed");

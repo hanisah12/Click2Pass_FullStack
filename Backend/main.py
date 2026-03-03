@@ -1,5 +1,10 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+import sys
+import os
+
+# Fix for Vercel pathing
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from routers.user import router as user_router
 from routers.routers_pass import router as pass_router
