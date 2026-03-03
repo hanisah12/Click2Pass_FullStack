@@ -34,7 +34,9 @@ def create_user(user_data: UserCreate, db: Session = Depends(connect_to_db)):
         return response_data
     except Exception as e:
         db.rollback()
-        print(f"Error in create_user: {str(e)}")
+        import traceback
+        error_details = traceback.format_exc()
+        print(f"Error in create_user: {str(e)}\nFull Traceback: {error_details}")
         raise HTTPException(status_code=500, detail=f"Internal Server Error: {str(e)}")
 
 
