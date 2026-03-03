@@ -11,21 +11,8 @@ from db.database import Base, engine
 app = FastAPI(title="Bus Pass Booking API")
 
 
-origins = [
-    "http://127.0.0.1:5500",
-    "http://localhost:5500",
-    "http://127.0.0.1:5501",
-    "http://localhost:5501",
-    "http://127.0.0.1:5502",
-    "http://localhost:5502",
-    "http://127.0.0.1:5503",
-    "http://localhost:5503",
-    "http://127.0.0.1:5505",
-    "http://localhost:5505",
-    "http://127.0.0.1:8000",
-    "http://localhost:8000",
-    "https://hanisah12.github.io",
-]
+origins = ["*"]
+
 
 app.add_middleware(
     CORSMiddleware,
@@ -42,9 +29,9 @@ def on_startup():
     Base.metadata.create_all(bind=engine)
 
 
-app.include_router(user_router)
-app.include_router(pass_router)
-app.include_router(message_router)
+app.include_router(user_router, prefix="/api")
+app.include_router(pass_router, prefix="/api")
+app.include_router(message_router, prefix="/api")
 
 
 @app.get("/")

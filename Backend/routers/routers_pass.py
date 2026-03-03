@@ -17,7 +17,6 @@ router = APIRouter(prefix="/passes", tags=["Passes"])
 #     return new_pass
     
 
-
 @router.post("/create", response_model=PassResponse)
 def create_pass(pass_data: PassCreate, db: Session = Depends(connect_to_db), current_user: Users = Depends(get_current_user)):
 
