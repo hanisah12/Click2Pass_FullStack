@@ -464,12 +464,55 @@ a:focus-visible {
     display: none;
   }
 
-  .top-navbar .nav-container {
+  .nav-container {
     padding: 0 1rem;
+  }
+
+  .logo h2 {
+    font-size: 1.5rem;
+  }
+
+  .nav-actions {
+    gap: 0.5rem;
+  }
+
+  .btn-login {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .main-layout {
+    padding: 0 1rem;
+    margin-top: 80px;
+    gap: 1.5rem;
+  }
+
+  .content {
+    padding: 1.5rem;
+  }
+
+  .sidebar {
+    padding: 1.5rem;
   }
 
   .footer-container {
     grid-template-columns: 1fr;
     text-align: center;
+    gap: 2rem;
+  }
+
+  .footer-col p {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-actions {
+    display: none;
+    /* Hide actions on very small screens or implement mobile menu */
+  }
+
+  .logo h2 {
+    font-size: 1.3rem;
   }
 }

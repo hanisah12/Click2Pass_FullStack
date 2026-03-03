@@ -84,7 +84,32 @@
     padding: 1rem;
     margin-top: 80px;
   }
+
   .success-card {
-    padding: 1.5rem;
+    padding: 2rem 1.5rem;
+    border-radius: 20px;
+  }
+
+  .form-title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .success-icon {
+    font-size: 3.5rem;
+  }
+
+  .form-title {
+    font-size: 1.3rem;
+  }
+
+  .ticket-row {
+    padding: 0.8rem 1rem !important;
+  }
+
+  .label,
+  .value {
+    font-size: 0.85rem !important;
   }
 }

@@ -1,3 +1,18 @@
+document.addEventListener("DOMContentLoaded", () => {
+  const userId = localStorage.getItem("user_id");
+  if (userId) {
+    document.getElementById("signupBtn").style.display = "none";
+    document.getElementById("loginBtn").textContent = "Logout";
+    document.getElementById("loginBtn").addEventListener("click", (e) => {
+      e.preventDefault();
+      localStorage.clear();
+      window.location.href = "login.html";
+    });
+    document.getElementById("myPassesLink").style.display = "block";
+    document.getElementById("profileLink").style.display = "block";
+  }
+});
+
 document.querySelector("form").addEventListener("submit", async (e) => {
   e.preventDefault();
 

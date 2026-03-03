@@ -23,6 +23,11 @@ document.getElementById("editProfileForm").addEventListener("submit", async e =>
 
   const newPassword = document.getElementById("password").value;
   if (newPassword) {
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if (!passwordRegex.test(newPassword)) {
+      alert("Password must be at least 8 characters long and contain at least one alphabet, one number, and one special character (@$!%*?&).");
+      return;
+    }
     data.password = newPassword;
   }
 
@@ -44,10 +49,29 @@ document.getElementById("editProfileForm").addEventListener("submit", async e =>
   }
 
   const updatedUser = await res.json();
+  const currentToken = localStorage.getItem("token");
+  // Keep the token if it's not in the update response
+  if (!updatedUser.token && currentToken) {
+    updatedUser.token = currentToken;
+  }
   localStorage.setItem("user", JSON.stringify(updatedUser));
+  localStorage.setItem("user_id", updatedUser.user_id);
 
   alert("Profile updated successfully!");
   window.location.href = "profile.html";
 });
+
+// Password Visibility Toggle
+const togglePassword = document.querySelector("#togglePassword");
+const passwordInput = document.querySelector("#password");
+
+if (togglePassword && passwordInput) {
+  togglePassword.addEventListener("click", function () {
+    const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
+    passwordInput.setAttribute("type", type);
+    this.classList.toggle("fa-eye");
+    this.classList.toggle("fa-eye-slash");
+  });
+}
 
 

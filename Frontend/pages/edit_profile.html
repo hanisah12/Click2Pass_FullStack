@@ -96,7 +96,13 @@
 
         <div class="form-group">
           <label for="password">New Password (leave blank to keep current)</label>
-          <input type="password" id="password" />
+          <div class="password-container">
+            <input type="password" id="password" />
+            <i class="fas fa-eye toggle-password" id="togglePassword"></i>
+          </div>
+          <small class="help-text" style="display: block; margin-top: 5px; color: #666; font-size: 0.8rem;">
+            If changing, must be 8+ characters with at least one alphabet, one number, and one special character.
+          </small>
         </div>
 
         <button type="submit" class="btn-primary">Save Changes</button>

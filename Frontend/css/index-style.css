@@ -206,7 +206,17 @@
     box-shadow: 0 8px 25px rgba(79, 70, 229, 0.5);
 }
 
+@media (max-width: 992px) {
+    .hero-content h1 {
+        font-size: 2.8rem;
+    }
+}
+
 @media (max-width: 768px) {
+    .hero-section {
+        padding: 5rem 1rem;
+    }
+
     .hero-content h1 {
         font-size: 2.2rem;
     }
@@ -224,5 +234,21 @@
     .how-it-works-section,
     .cta-section {
         margin: 3rem auto;
+    }
+
+    .feature-card,
+    .how-it-works-step {
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero-cta {
+        padding: 0.9rem 2rem;
+        font-size: 1rem;
     }
 }

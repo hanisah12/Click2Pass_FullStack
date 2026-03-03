@@ -1,5 +1,3 @@
-
-
 .form-container {
     max-width: 900px;
     margin: 90px auto 0;
@@ -102,7 +100,7 @@
     box-shadow: var(--shadow-sm);
 }
 
-.payment-options input[type="radio"]:checked + i {
+.payment-options input[type="radio"]:checked+i {
     color: var(--accent);
 }
 
@@ -139,5 +137,24 @@
 
     .payment-card {
         padding: 1.5rem;
+        border-radius: 20px;
+    }
+
+    .form-title {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .payment-card {
+        padding: 1.2rem;
+    }
+
+    .form-title {
+        font-size: 1.3rem;
+    }
+
+    .btn-primary {
+        padding: 0.8rem;
     }
 }

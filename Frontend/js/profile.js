@@ -12,3 +12,12 @@ const userNameEl = document.getElementById("userName");
 if (userNameEl) {
   userNameEl.textContent = user.name;
 }
+
+const logoutLink = document.getElementById("logoutLink");
+if (logoutLink) {
+  logoutLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    localStorage.clear();
+    window.location.href = "login.html";
+  });
+}
