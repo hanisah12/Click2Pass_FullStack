@@ -8,7 +8,7 @@ document.getElementById("phone").value = user.phone;
 
 const userNameEl = document.getElementById("userName");
 if (userNameEl) {
-  userNameEl.textContent = user.name; 
+  userNameEl.textContent = user.name;
 }
 
 document.getElementById("editProfileForm").addEventListener("submit", async e => {
@@ -34,7 +34,7 @@ document.getElementById("editProfileForm").addEventListener("submit", async e =>
       "Content-Type": "application/json",
       "Authorization": `Bearer ${token}`
     },
-    body: JSON.stringify(da)
+    body: JSON.stringify(data)
   });
 
   if (!res.ok) {
