@@ -39,7 +39,8 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
     window.location.replace("login.html");
 
   } catch (err) {
-    alert("Server not reachable");
+    console.error("Signup Error:", err);
+    alert("Server not reachable: " + err.message);
   }
 });
 

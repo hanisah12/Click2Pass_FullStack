@@ -26,7 +26,10 @@ app.add_middleware(
 
 @app.on_event("startup")
 def on_startup():
-    Base.metadata.create_all(bind=engine)
+    try:
+        Base.metadata.create_all(bind=engine)
+    except Exception as e:
+        print(f"Database creation error: {e}")
 
 
 app.include_router(user_router, prefix="/api")
@@ -37,3 +40,8 @@ app.include_router(message_router, prefix="/api")
 @app.get("/")
 def root():
     return {"message": "Welcome to Bus Pass Booking API"}
+
+
+@app.get("/api/health")
+def health_check():
+    return {"status": "ok", "message": "Server is reachable"}
