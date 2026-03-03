@@ -6,6 +6,8 @@ from sqlalchemy.orm import sessionmaker, declarative_base
 load_dotenv()
 
 db_url = os.getenv("DATABASE_URL")
+if db_url:
+    db_url = db_url.strip()
 
 # Vercel/Supabase fix: SQLAlchemy 1.4+ requires 'postgresql://' instead of 'postgres://'
 if db_url and db_url.startswith("postgres://"):
