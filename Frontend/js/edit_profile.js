@@ -65,6 +65,19 @@ document.getElementById("editProfileForm").addEventListener("submit", async e =>
 const togglePassword = document.querySelector("#togglePassword");
 const passwordInput = document.querySelector("#password");
 
+if (passwordInput) {
+  passwordInput.addEventListener("input", function () {
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if (this.value === "" || passwordRegex.test(this.value)) {
+      this.style.borderColor = (this.value === "") ? "" : "green";
+      this.style.boxShadow = (this.value === "") ? "" : "0 0 5px green";
+    } else {
+      this.style.borderColor = "";
+      this.style.boxShadow = "";
+    }
+  });
+}
+
 if (togglePassword && passwordInput) {
   togglePassword.addEventListener("click", function () {
     const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";

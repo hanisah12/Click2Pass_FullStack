@@ -49,6 +49,16 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
 const togglePassword = document.querySelector("#togglePassword");
 const passwordInput = document.querySelector("#password");
 
+passwordInput.addEventListener("input", function () {
+  if (this.value.length >= 8) {
+    this.style.borderColor = "green";
+    this.style.boxShadow = "0 0 5px green";
+  } else {
+    this.style.borderColor = "";
+    this.style.boxShadow = "";
+  }
+});
+
 togglePassword.addEventListener("click", function () {
   // Toggle the type attribute
   const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";

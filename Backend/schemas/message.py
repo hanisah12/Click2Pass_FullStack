@@ -5,7 +5,7 @@ from datetime import datetime
 
 class MessageCreate(BaseModel):
     user_id: int
-    name: str
+    name: Optional[str] = None
     email: str
     subject: str
     message: str
@@ -19,7 +19,7 @@ class MessageUpdate(BaseModel):
 class MessageResponse(BaseModel):
     message_id: int
     user_id: int
-    name: str
+    name: Optional[str] = None
     email: str
     subject: str
     message: str

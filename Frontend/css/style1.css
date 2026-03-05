@@ -460,7 +460,33 @@ a:focus-visible {
 }
 
 @media (max-width: 768px) {
+  .hamburger {
+    display: block;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--primary);
+  }
+
   .nav-menu {
+    display: none;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: var(--card-bg);
+    flex-direction: column;
+    padding: 2rem;
+    gap: 1.5rem;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+
+  .nav-menu.active {
+    display: flex;
+  }
+
+  .nav-actions {
     display: none;
   }
 
@@ -470,15 +496,6 @@ a:focus-visible {
 
   .logo h2 {
     font-size: 1.5rem;
-  }
-
-  .nav-actions {
-    gap: 0.5rem;
-  }
-
-  .btn-login {
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
   }
 
   .main-layout {
@@ -507,12 +524,11 @@ a:focus-visible {
 }
 
 @media (max-width: 480px) {
-  .nav-actions {
-    display: none;
-    /* Hide actions on very small screens or implement mobile menu */
-  }
-
   .logo h2 {
     font-size: 1.3rem;
   }
+}
+
+.hamburger {
+  display: none;
 }

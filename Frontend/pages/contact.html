@@ -21,12 +21,17 @@
             <ul class="nav-menu">
                 <li><a href="../../index.html">Home</a></li>
                 <li><a href="contact.html" class="active">Contact</a></li>
+                <li id="applyPassLink" style="display:none;"><a href="form.html">Apply Pass</a></li>
                 <li id="myPassesLink" style="display:none;"><a href="my-passes.html">My Passes</a></li>
                 <li id="profileLink" style="display:none;"><a href="profile.html">Profile</a></li>
             </ul>
             <div class="nav-actions" id="navActions">
                 <a href="signup.html" class="btn-signup" id="signupBtn">Sign Up</a>
                 <a href="login.html" class="btn-login" id="loginBtn">Login</a>
+                <button id="logoutBtn" class="btn-login" style="display:none; border:none;">Logout</button>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
             </div>
         </div>
     </nav>
@@ -37,11 +42,6 @@
             <p class="form-subtitle">Have a question or feedback? Let us know!</p>
 
             <form action="#">
-                <div class="form-group">
-                    <label for="name">Your Name</label>
-                    <input type="text" id="name" placeholder="Enter your name" required />
-                </div>
-
                 <div class="form-group">
                     <label for="email">Your Email</label>
                     <input type="email" id="email" placeholder="Enter your email" required />

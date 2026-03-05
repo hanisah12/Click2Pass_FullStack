@@ -56,6 +56,17 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
 const togglePassword = document.querySelector("#togglePassword");
 const passwordInput = document.querySelector("#password");
 
+passwordInput.addEventListener("input", function () {
+  const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  if (passwordRegex.test(this.value)) {
+    this.style.borderColor = "green";
+    this.style.boxShadow = "0 0 5px green";
+  } else {
+    this.style.borderColor = "";
+    this.style.boxShadow = "";
+  }
+});
+
 togglePassword.addEventListener("click", function () {
   // Toggle the type attribute
   const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";

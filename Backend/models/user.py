@@ -7,7 +7,7 @@ class Users(Base):
 
     user_id = Column(Integer, primary_key=True, index=True)
     name = Column(String)
-    email = Column(String)
-    phone = Column(String)
+    email = Column(String, unique=True, index=True)
+    phone = Column(String, unique=True, index=True)
     password = Column(String)
     create_date = Column(DateTime, default=datetime.utcnow)

@@ -12,6 +12,14 @@ router = APIRouter(prefix="/users", tags=["Users"])
 def create_user(user_data: UserCreate, db: Session = Depends(connect_to_db)):
     try:
         print(f"DEBUG: Receiving signup for {user_data.email}, password length: {len(user_data.password)}")
+        # Check if email or phone already exists
+        existing_user = db.query(Users).filter((Users.email == user_data.email) | (Users.phone == user_data.phone)).first()
+        if existing_user:
+            if existing_user.email == user_data.email:
+                raise HTTPException(status_code=400, detail="Email already registered")
+            if existing_user.phone == user_data.phone:
+                raise HTTPException(status_code=400, detail="Phone number already registered")
+        
         hashed_pwd = hash_password(user_data.password)
         user_dict = user_data.model_dump()
         user_dict["password"] = hashed_pwd

@@ -7,7 +7,7 @@ class Message(Base):
 
     message_id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey("users.user_id"))
-    name = Column(String(150), nullable=False)  
+    name = Column(String(150), nullable=True)  
     email = Column(String(150), nullable=False)  
     subject = Column(String, nullable=False)
     message = Column(Text, nullable=False)

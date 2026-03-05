@@ -9,6 +9,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const userId = localStorage.getItem("user_id");
 
+  const applyPassItem = document.getElementById("applyPassItem");
+  const hamburger = document.getElementById("hamburger");
+  const navMenu = document.querySelector(".nav-menu");
+
   if (userId) {
     // Logged in
     if (signupBtn) signupBtn.style.display = "none";
@@ -20,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.reload();
       });
     }
+    if (applyPassItem) applyPassItem.style.display = "block";
     if (myPassesItem) myPassesItem.style.display = "block";
     if (profileItem) profileItem.style.display = "block";
 
@@ -31,6 +36,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   } else {
     // Logged out
+    if (signupBtn) signupBtn.style.display = "block";
+    if (loginBtn) loginBtn.style.display = "block";
+    if (logoutBtn) logoutBtn.style.display = "none";
+    if (applyPassItem) applyPassItem.style.display = "none";
+    if (myPassesItem) myPassesItem.style.display = "none";
+    if (profileItem) profileItem.style.display = "none";
+
     if (signupBtn) {
       signupBtn.addEventListener("click", () => {
         window.location.href = "./Frontend/pages/signup.html";
@@ -46,6 +58,12 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.href = "./Frontend/pages/signup.html";
       });
     }
+  }
+
+  if (hamburger && navMenu) {
+    hamburger.addEventListener("click", () => {
+      navMenu.classList.toggle("active");
+    });
   }
 
   if (applyPassBtn) {
