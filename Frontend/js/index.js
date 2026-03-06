@@ -62,6 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (hamburger && navMenu) {
     hamburger.addEventListener("click", () => {
+      hamburger.classList.toggle("active");
       navMenu.classList.toggle("active");
     });
   }
