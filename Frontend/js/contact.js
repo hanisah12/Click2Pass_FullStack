@@ -22,6 +22,22 @@ document.addEventListener("DOMContentLoaded", () => {
     if (applyPassLink) applyPassLink.style.display = "block";
     if (myPassesLink) myPassesLink.style.display = "block";
     if (profileLink) profileLink.style.display = "block";
+
+    const userObjStr = localStorage.getItem("user");
+    if (userObjStr) {
+      try {
+        const userObj = JSON.parse(userObjStr);
+        const emailInput = document.getElementById("email");
+        if (emailInput && userObj.email) {
+          emailInput.value = userObj.email;
+          emailInput.readOnly = true;
+          emailInput.style.backgroundColor = "#e2e8f0";
+          emailInput.style.cursor = "not-allowed";
+        }
+      } catch (e) {
+        console.error("Error parsing user from localStorage");
+      }
+    }
   }
 
   if (hamburger && navMenu) {
@@ -34,10 +50,27 @@ document.addEventListener("DOMContentLoaded", () => {
 document.querySelector("form").addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const user_id = localStorage.getItem("user_id") || 0;
+  const user_id = localStorage.getItem("user_id");
+  if (!user_id) {
+    alert("Please login to send a message");
+    window.location.href = "login.html";
+    return;
+  }
+
+  let userName = "User";
+  try {
+    const userObjStr = localStorage.getItem("user");
+    if (userObjStr) {
+      const userObj = JSON.parse(userObjStr);
+      if (userObj.name) userName = userObj.name;
+    }
+  } catch (e) {
+    console.error("Error reading user name");
+  }
 
   const data = {
     user_id: Number(user_id),
+    name: userName,
     email: document.getElementById("email").value,
     subject: document.getElementById("subject").value,
     message: document.getElementById("message").value

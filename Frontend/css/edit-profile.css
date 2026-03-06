@@ -213,8 +213,8 @@ input:hover {
 
 input:focus {
   outline: none;
-  border-color: #f43f5e;
-  box-shadow: 0 0 0 4px rgba(244, 63, 94, 0.15);
+  border-color: #8a60ff;
+  box-shadow: 0 0 0 4px rgba(138, 96, 255, 0.15);
 }
 
 input[type="password"] {

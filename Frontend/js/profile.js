@@ -21,3 +21,12 @@ if (logoutLink) {
     window.location.href = "login.html";
   });
 }
+// Hamburger Menu Toggle
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.querySelector('.nav-menu');
+
+if (hamburger) {
+  hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+  });
+}

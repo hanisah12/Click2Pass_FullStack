@@ -87,3 +87,12 @@ fetch(`${API_BASE}/passes/user/${user_id}`, {
   .catch(err => {
     console.error("Failed to load passes:", err);
   });
+// Hamburger Menu Toggle
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.querySelector('.nav-menu');
+
+if (hamburger) {
+  hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+  });
+}

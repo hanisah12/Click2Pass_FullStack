@@ -84,6 +84,34 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
+// Real-time Aadhaar validation for new users
+idProofInput.addEventListener("input", async () => {
+  if (idProofInput.readOnly || idProofInput.value.length !== 12) return;
+
+  try {
+    const res = await fetch(`${API_BASE}/passes/`, {
+      headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` }
+    });
+
+    if (res.ok) {
+      const allPasses = await res.json();
+      const user_id = localStorage.getItem("user_id");
+
+      const isAadhaarUsedByOther = allPasses.some(
+        pass => pass.id_proof === idProofInput.value && String(pass.user_id) !== String(user_id)
+      );
+
+      if (isAadhaarUsedByOther) {
+        alert("This Aadhaar number is already registered with another user. Please check your number.");
+        idProofInput.value = "";
+        idProofInput.focus();
+      }
+    }
+  } catch (err) {
+    console.error("Error validating Aadhaar:", err);
+  }
+});
+
 validFrom.addEventListener("change", () => {
   const fromDate = new Date(validFrom.value);
   if (!isNaN(fromDate.getTime())) {
@@ -115,3 +143,12 @@ validTill.parentNode.appendChild(tillHelpText);
 
 
 
+// Hamburger Menu Toggle
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.querySelector('.nav-menu');
+
+if (hamburger) {
+  hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+  });
+}
