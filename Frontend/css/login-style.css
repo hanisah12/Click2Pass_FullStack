@@ -1,7 +1,3 @@
-body {
-    background-color: #f0f2f5;
-}
-
 .form-container {
     max-width: 800px;
     margin: 120px auto 0;
@@ -35,28 +31,6 @@ body {
     background: linear-gradient(90deg, #8a60ff, #f43f5e, #ffc87c, #8a60ff);
     background-size: 300% 100%;
     animation: gradientSlide 4s linear infinite;
-}
-
-@keyframes gradientSlide {
-    0% {
-        background-position: 0% 50%;
-    }
-
-    100% {
-        background-position: 100% 50%;
-    }
-}
-
-@keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 .form-title {

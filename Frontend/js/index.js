@@ -60,12 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  if (hamburger && navMenu) {
-    hamburger.addEventListener("click", () => {
-      hamburger.classList.toggle("active");
-      navMenu.classList.toggle("active");
-    });
-  }
+
 
   if (applyPassBtn) {
     applyPassBtn.addEventListener("click", () => {

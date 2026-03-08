@@ -68,13 +68,4 @@ togglePassword.addEventListener("click", function () {
   this.classList.toggle("fa-eye");
   this.classList.toggle("fa-eye-slash");
 });
-// Hamburger Menu Toggle
-const hamburger = document.getElementById('hamburger');
-const navMenu = document.querySelector('.nav-menu');
 
-if (hamburger) {
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
-  });
-}
