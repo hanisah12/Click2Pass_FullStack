@@ -8,14 +8,6 @@ from models.user import Users
 
 router = APIRouter(prefix="/passes", tags=["Passes"])
 
-# @router.post("/create", response_model=PassResponse)
-# def create_pass(pass_data: PassCreate, db: Session = Depends(connect_to_db)):
-#     new_pass = ApplyPass(**pass_data.model_dump())
-#     db.add(new_pass)
-#     db.commit()
-#     db.refresh(new_pass)
-#     return new_pass
-    
 
 @router.post("/create", response_model=PassResponse)
 def create_pass(pass_data: PassCreate, db: Session = Depends(connect_to_db), current_user: Users = Depends(get_current_user)):
