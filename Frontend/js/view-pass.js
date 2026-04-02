@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             const diffTime = tillDate - today;
             diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
         }
-
+        
         const daysElement = document.getElementById("daysRemaining");
         if (diffDays > 0) {
             daysElement.textContent = `${diffDays} Days`;

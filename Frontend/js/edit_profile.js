@@ -86,6 +86,3 @@ if (togglePassword && passwordInput) {
     this.classList.toggle("fa-eye-slash");
   });
 }
-
-
-
