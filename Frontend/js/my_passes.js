@@ -19,7 +19,6 @@ fetch(`${API_BASE}/passes/user/${user_id}`, {
       container.innerHTML = "<p>No active passes</p>";
       return;
     }
-
     myPasses.forEach(p => {
       const today = new Date();
       today.setHours(0, 0, 0, 0);

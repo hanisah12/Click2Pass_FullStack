@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             daysElement.textContent = "Expired";
             daysElement.style.color = "#ef4444";
         }
-
+        
     } catch (err) {
         console.error("Error fetching pass:", err);
         alert("Failed to load pass details. Please try again.");

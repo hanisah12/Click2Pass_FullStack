@@ -34,7 +34,7 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
       alert("Server Error (Non-JSON): " + text.substring(0, 100));
       return;
     }
-
+    
     if (!res.ok) {
       alert(result.detail || "Signup failed");
       return;
