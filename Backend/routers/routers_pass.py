@@ -10,59 +10,69 @@ router = APIRouter(prefix="/passes", tags=["Passes"])
 
 
 @router.post("/create", response_model=PassResponse)
-def create_pass(pass_data: PassCreate, db: Session = Depends(connect_to_db), current_user: Users = Depends(get_current_user)):
+def create_pass(
+    pass_data: PassCreate,
+    db: Session = Depends(connect_to_db),
+    current_user: Users = Depends(get_current_user),
+):
 
     # Auto-calculate valid_till to be exactly 1 month after valid_from
     # Using a simple month increment logic
     from datetime import date
     import calendar
-    
+
     start_date = pass_data.valid_from
     month = start_date.month % 12 + 1
     year = start_date.year + (start_date.month // 12)
     day = min(start_date.day, calendar.monthrange(year, month)[1])
     expected_till = date(year, month, day)
-    
+
     # Overwrite valid_till to ensure it's exactly 1 month
     pass_data.valid_till = expected_till
 
     if pass_data.valid_till < pass_data.valid_from:
         raise HTTPException(
-            status_code=400,
-            detail="valid_till cannot be earlier than valid_from"
+            status_code=400, detail="valid_till cannot be earlier than valid_from"
         )
-    
+
     # Unique Aadhaar check: If this Aadhaar is already used by someone else
-    existing_pass_with_aadhar = db.query(ApplyPass).filter(
-        ApplyPass.id_proof == pass_data.id_proof,
-        ApplyPass.user_id != current_user.user_id
-    ).first()
+    existing_pass_with_aadhar = (
+        db.query(ApplyPass)
+        .filter(
+            ApplyPass.id_proof == pass_data.id_proof,
+            ApplyPass.user_id != current_user.user_id,
+        )
+        .first()
+    )
 
     if existing_pass_with_aadhar:
         raise HTTPException(
             status_code=400,
-            detail="This Aadhaar number is already registered with another user."
+            detail="This Aadhaar number is already registered with another user.",
         )
 
     # Aadhaar consistency check: If user already has a pass, Aadhaar must match
-    previous_pass = db.query(ApplyPass).filter(
-        ApplyPass.user_id == current_user.user_id
-    ).first()
+    previous_pass = (
+        db.query(ApplyPass).filter(ApplyPass.user_id == current_user.user_id).first()
+    )
 
     if previous_pass and previous_pass.id_proof != pass_data.id_proof:
         raise HTTPException(
             status_code=400,
-            detail="Aadhaar number does not match your previous record. Please enter your correct Aadhaar number."
+            detail="Aadhaar number does not match your previous record. Please enter your correct Aadhaar number.",
         )
 
-    last_pass = db.query(ApplyPass).filter(
-        ApplyPass.user_id == current_user.user_id
-    ).order_by(ApplyPass.valid_till.desc()).first()
+    last_pass = (
+        db.query(ApplyPass)
+        .filter(ApplyPass.user_id == current_user.user_id)
+        .order_by(ApplyPass.valid_till.desc())
+        .first()
+    )
 
     if last_pass and pass_data.valid_from <= last_pass.valid_till:
         raise HTTPException(
             status_code=400,
-            detail="You already have a active pass. New pass must start after previous pass ends"
+            detail="You already have a active pass. New pass must start after previous pass ends",
         )
 
     new_pass = ApplyPass(**pass_data.model_dump())
@@ -73,14 +83,17 @@ def create_pass(pass_data: PassCreate, db: Session = Depends(connect_to_db), cur
     return new_pass
 
 
-
 @router.get("/", response_model=list[PassResponse])
 def get_all_passes(db: Session = Depends(connect_to_db)):
     return db.query(ApplyPass).all()
 
 
 @router.get("/user/{user_id}", response_model=list[PassResponse])
-def get_user_passes(user_id: int, db: Session = Depends(connect_to_db), current_user: Users = Depends(get_current_user)):
+def get_user_passes(
+    user_id: int,
+    db: Session = Depends(connect_to_db),
+    current_user: Users = Depends(get_current_user),
+):
     return db.query(ApplyPass).filter(ApplyPass.user_id == user_id).all()
 
 
@@ -93,7 +106,9 @@ def get_pass(pass_id: int, db: Session = Depends(connect_to_db)):
 
 
 @router.put("/{pass_id}", response_model=PassResponse)
-def renew_pass(pass_id: int,pass_data: PassUpdate,db: Session = Depends(connect_to_db)):
+def renew_pass(
+    pass_id: int, pass_data: PassUpdate, db: Session = Depends(connect_to_db)
+):
     bus_pass = db.query(ApplyPass).filter(ApplyPass.pass_id == pass_id).first()
     if not bus_pass:
         raise HTTPException(status_code=404, detail="Pass not found")
@@ -105,6 +120,7 @@ def renew_pass(pass_id: int,pass_data: PassUpdate,db: Session = Depends(connect_
     db.refresh(bus_pass)
     return bus_pass
 
+
 @router.delete("/{pass_id}")
 def delete_pass(pass_id: int, db: Session = Depends(connect_to_db)):
     bus_pass = db.query(ApplyPass).filter(ApplyPass.pass_id == pass_id).first()
@@ -115,11 +131,10 @@ def delete_pass(pass_id: int, db: Session = Depends(connect_to_db)):
     db.commit()
     return {"message": "Pass deleted"}
 
+
 @router.patch("/{pass_id}", response_model=PassResponse)
 def patch_pass(
-    pass_id: int,
-    pass_data: PassPatch,
-    db: Session = Depends(connect_to_db)
+    pass_id: int, pass_data: PassPatch, db: Session = Depends(connect_to_db)
 ):
     bus_pass = db.query(ApplyPass).filter(ApplyPass.pass_id == pass_id).first()
     if not bus_pass:
@@ -136,12 +151,3 @@ def patch_pass(
     db.commit()
     db.refresh(bus_pass)
     return bus_pass
-
-
-
-
-
- 
-
-
-

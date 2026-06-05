@@ -5,13 +5,14 @@ if (!user_id) {
 
 const token = localStorage.getItem("token");
 
+
 fetch(`${API_BASE}/passes/user/${user_id}`, {
   headers: {
-    "Authorization": `Bearer ${token}`
-  }
+    Authorization: `Bearer ${token}`,
+  },
 })
-  .then(res => res.json())
-  .then(myPasses => {
+  .then((res) => res.json())
+  .then((myPasses) => {
     const container = document.getElementById("passesContainer");
     container.innerHTML = "";
 
@@ -19,7 +20,7 @@ fetch(`${API_BASE}/passes/user/${user_id}`, {
       container.innerHTML = "<p>No active passes</p>";
       return;
     }
-    myPasses.forEach(p => {
+    myPasses.forEach((p) => {
       const today = new Date();
       today.setHours(0, 0, 0, 0);
       const fromDate = new Date(p.valid_from);
@@ -48,7 +49,8 @@ fetch(`${API_BASE}/passes/user/${user_id}`, {
         statusStyle = "color: #f59e0b; font-weight: 700;";
       } else {
         statusText = "Expired";
-        statusStyle = "background: linear-gradient(135deg, #f44336, #e91e63); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800;";
+        statusStyle =
+          "background: linear-gradient(135deg, #f44336, #e91e63); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800;";
         cardClass += " expired";
       }
 
@@ -57,7 +59,7 @@ fetch(`${API_BASE}/passes/user/${user_id}`, {
 
           <div class="ticket-main">
             <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-              <h3>${p.pass_type === '1000' ? 'Non-AC' : 'AC + Non-AC'} Pass</h3>
+              <h3>${p.pass_type === "1000" ? "Non-AC" : "AC + Non-AC"} Pass</h3>
               <span style="${statusStyle}">${statusText}</span>
             </div>
 
@@ -83,7 +85,6 @@ fetch(`${API_BASE}/passes/user/${user_id}`, {
       `;
     });
   })
-  .catch(err => {
+  .catch((err) => {
     console.error("Failed to load passes:", err);
   });
-

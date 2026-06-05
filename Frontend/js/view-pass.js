@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             window.location.href = "my-passes.html";
             return;
         }
-
+        
         const displayType = pass.pass_type === "1000" ? "₹1000 - Non-AC" : "₹2000 - AC + Non-AC";
         document.getElementById("passType").textContent = displayType;
         document.getElementById("passId").textContent = "P-" + pass.pass_id;

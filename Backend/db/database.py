@@ -27,5 +27,7 @@ if db_url and "postgresql" in db_url:
         engine_args["connect_args"] = {"sslmode": "require"}
 
 engine = create_engine(db_url, **engine_args)
+
 SessionLocal = sessionmaker(bind=engine, autocommit=False, autoflush=False)
+
 Base = declarative_base()

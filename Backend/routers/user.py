@@ -11,38 +11,47 @@ router = APIRouter(prefix="/users", tags=["Users"])
 @router.post("/create", response_model=UserResponse)
 def create_user(user_data: UserCreate, db: Session = Depends(connect_to_db)):
     try:
-        print(f"DEBUG: Receiving signup for {user_data.email}, password length: {len(user_data.password)}")
+        print(
+            f"DEBUG: Receiving signup for {user_data.email}, password length: {len(user_data.password)}"
+        )
         # Check if email or phone already exists
-        existing_user = db.query(Users).filter((Users.email == user_data.email) | (Users.phone == user_data.phone)).first()
+        existing_user = (
+            db.query(Users)
+            .filter((Users.email == user_data.email) | (Users.phone == user_data.phone))
+            .first()
+        )
         if existing_user:
             if existing_user.email == user_data.email:
                 raise HTTPException(status_code=400, detail="Email already registered")
             if existing_user.phone == user_data.phone:
-                raise HTTPException(status_code=400, detail="Phone number already registered")
-        
+                raise HTTPException(
+                    status_code=400, detail="Phone number already registered"
+                )
+
         hashed_pwd = hash_password(user_data.password)
         user_dict = user_data.model_dump()
         user_dict["password"] = hashed_pwd
-        
+
         user = Users(**user_dict)
         db.add(user)
         db.commit()
         db.refresh(user)
-        
+
         token = create_access_token(data={"sub": user.email})
-        
+
         response_data = {
             "user_id": user.user_id,
             "name": user.name,
             "email": user.email,
             "phone": user.phone,
             "token": token,
-            "token_type": "bearer"
+            "token_type": "bearer",
         }
         return response_data
     except Exception as e:
         db.rollback()
         import traceback
+
         error_details = traceback.format_exc()
         print(f"Error in create_user: {str(e)}\nFull Traceback: {error_details}")
         raise HTTPException(status_code=500, detail=f"Internal Server Error: {str(e)}")
@@ -54,19 +63,19 @@ def login_user(user_credentials: UserLogin, db: Session = Depends(connect_to_db)
         user = db.query(Users).filter(Users.email == user_credentials.email).first()
         if not user:
             raise HTTPException(status_code=404, detail="User not found")
-        
+
         if not verify_password(user_credentials.password, user.password):
             raise HTTPException(status_code=401, detail="Invalid credentials")
-        
+
         token = create_access_token(data={"sub": user.email})
-        
+
         return {
             "user_id": user.user_id,
             "name": user.name,
             "email": user.email,
             "phone": user.phone,
             "token": token,
-            "token_type": "bearer"
+            "token_type": "bearer",
         }
     except HTTPException as e:
         raise e
@@ -89,7 +98,11 @@ def get_user(user_id: int, db: Session = Depends(connect_to_db)):
 
 
 @router.delete("/{user_id}")
-def delete_user(user_id: int, db: Session = Depends(connect_to_db), current_user: Users = Depends(get_current_user)):
+def delete_user(
+    user_id: int,
+    db: Session = Depends(connect_to_db),
+    current_user: Users = Depends(get_current_user),
+):
     user = db.query(Users).filter(Users.user_id == user_id).first()
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
@@ -104,7 +117,7 @@ def patch_user(
     user_id: int,
     user_data: UserPatch,
     db: Session = Depends(connect_to_db),
-    current_user: Users = Depends(get_current_user)
+    current_user: Users = Depends(get_current_user),
 ):
     user = db.query(Users).filter(Users.user_id == user_id).first()
     if not user:
@@ -121,4 +134,3 @@ def patch_user(
     db.commit()
     db.refresh(user)
     return user
-
